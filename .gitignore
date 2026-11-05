@@ -1,5 +1,12 @@
-git rm --cached accepted_2007_to_2018Q4.csv
-git rm --cached Data_Cleaning.ipynb
-git add .gitignore
-git commit -m "remove large files, add gitignore"
-git push -u origin main
+data/
+original_app_reference/
+older_training_reference/
+START_HERE.txt
+FILE_MANIFEST.json
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+*.log
+.env
