@@ -1,0 +1,136 @@
+{
+  "model_description": "Newly trained 19-input pipeline; not a reconstruction of the old model",
+  "seed": 42,
+  "python_version": "3.12.14",
+  "package_versions": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "lightgbm": "4.6.0",
+    "joblib": "1.5.2",
+    "matplotlib": "3.10.7"
+  },
+  "dataset_filename": "accepted_2007_to_2018Q4.csv",
+  "dataset_size_bytes": 1675133810,
+  "raw_rows": 2260701,
+  "eligible_rows": 1345310,
+  "duplicate_ids_removed": 0,
+  "missing_issue_dates_removed": 0,
+  "target": {
+    "0": "Fully Paid",
+    "1": "Charged Off"
+  },
+  "features": [
+    "loan_amnt",
+    "term",
+    "int_rate",
+    "installment",
+    "grade",
+    "emp_length",
+    "annual_inc",
+    "pymnt_plan",
+    "dti",
+    "delinq_2yrs",
+    "fico_range_low",
+    "fico_range_high",
+    "inq_last_6mths",
+    "open_acc",
+    "pub_rec",
+    "revol_bal",
+    "revol_util",
+    "total_acc",
+    "credit_history_years"
+  ],
+  "split": {
+    "train": {
+      "rows": 938537,
+      "default_rate": 0.18655844148925402,
+      "start": "2007-06-01",
+      "end": "2016-03-01"
+    },
+    "validation": {
+      "rows": 197556,
+      "default_rate": 0.248896515418413,
+      "start": "2016-04-01",
+      "end": "2017-01-01"
+    },
+    "test": {
+      "rows": 209217,
+      "default_rate": 0.2117227567549482,
+      "start": "2017-02-01",
+      "end": "2018-12-01"
+    }
+  },
+  "pymnt_plan_policy": "Forced to zero; retained only for schema compatibility",
+  "best_iteration": 500,
+  "decision_rule": "default_probability >= lightgbm.threshold",
+  "test_results": {
+    "dummy": {
+      "roc_auc": 0.5,
+      "average_precision": 0.2117227567549482,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.7882772432450518,
+      "brier_score": 0.16752947378982444,
+      "threshold": 0.5,
+      "confusion_matrix": [
+        [
+          164921,
+          0
+        ],
+        [
+          44296,
+          0
+        ]
+      ]
+    },
+    "logistic_regression": {
+      "roc_auc": 0.6878432964500666,
+      "average_precision": 0.35074939024861074,
+      "precision": 0.29576356089881206,
+      "recall": 0.7464330865089399,
+      "f1": 0.42365844908000616,
+      "accuracy": 0.5700158208940956,
+      "brier_score": 0.15696076437409467,
+      "threshold": 0.14828826514086613,
+      "confusion_matrix": [
+        [
+          86193,
+          78728
+        ],
+        [
+          11232,
+          33064
+        ]
+      ]
+    },
+    "lightgbm": {
+      "roc_auc": 0.7011590887057961,
+      "average_precision": 0.36702041726462836,
+      "precision": 0.31626103236159403,
+      "recall": 0.6940807296369875,
+      "f1": 0.4345275952229524,
+      "accuracy": 0.6175263004440366,
+      "brier_score": 0.15459253537456388,
+      "threshold": 0.1678487251788922,
+      "confusion_matrix": [
+        [
+          98452,
+          66469
+        ],
+        [
+          13551,
+          30745
+        ]
+      ]
+    }
+  },
+  "limitations": [
+    "Only accepted loans with resolved outcomes in the snapshot are evaluated.",
+    "Newer cohorts have shorter follow-up; maturity and selection bias remain.",
+    "Chronological cohorts do not simulate historical label availability.",
+    "Default probability calibration and subgroup fairness are not established.",
+    "Features were chosen to match the existing API, not proven optimal."
+  ]
+}
